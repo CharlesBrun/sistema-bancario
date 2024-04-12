@@ -1,5 +1,4 @@
 import time
-
 import textwrap
 
 
@@ -115,21 +114,27 @@ def main():
         opcao = menu()
 
         if opcao == "d":
-            valor = float(input("Informe o valor do depósito: "))
+            valor = input("Informe o valor do depósito: ")
 
-            saldo, extrato = depositar(saldo, valor, extrato)
+            if valor.strip() == "":
+                print("Digite um valor valido!")
+            else:
+                saldo, extrato = depositar(float(saldo), valor, extrato)
 
         elif opcao == "s":
-            valor = float(input("Informe o valor do saque: "))
+            valor = input("Informe o valor do saque: ")
 
-            saldo, extrato = sacar(
-                saldo=saldo,
-                valor=valor,
-                extrato=extrato,
-                limite=limite,
-                numero_saques=numero_saques,
-                limite_saques=LIMITE_SAQUES,
-            )
+            if valor.strip() == "":
+                print("Digite um valor valido!")
+            else:
+                saldo, extrato = sacar(
+                    saldo=saldo,
+                    valor=float(valor),
+                    extrato=extrato,
+                    limite=limite,
+                    numero_saques=numero_saques,
+                    limite_saques=LIMITE_SAQUES,
+                )
 
         elif opcao == "e":
             exibir_extrato(saldo, extrato=extrato)
